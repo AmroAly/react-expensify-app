@@ -5,16 +5,15 @@ import moment from 'moment';
 import numeral from 'numeral';
 
 const ExpenseListItem = ({ description, amount, createdAt, id}) => (
-    <div>
-        <h3>Expense Description: {description}</h3>
-        <p>
-            {numeral(amount/100).format('$0,0.00')} 
-            - 
-            {moment(createdAt).format('MMM Do, Y')}
-        </p>
-
-        <Link to={`/edit/${id}`}>Edit</Link>
-    </div>
+    <Link className="list-item" to={`/edit/${id}`}>
+        <div>
+            <h3 className="list-item__title">{description}</h3>
+            <span className="lsit-item__sub-title">{moment(createdAt).format('MMM Do, Y')}</span>
+        </div>
+        <h3 className="list-item__data">
+            {numeral(amount/100).format('$0,0.00')}
+        </h3>
+    </Link>
 );
 
 export default ExpenseListItem;
